@@ -11,11 +11,12 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"matloob.io/regexp/syntax"
 	"strconv"
 	"strings"
 	"testing"
 	"unicode/utf8"
+
+	"github.com/RadhiFadlillah/matloob-regexp/syntax"
 )
 
 // TestRE2 tests this package's regexp API against test cases
@@ -51,8 +52,8 @@ import (
 // submatch indices. An unmatched subexpression formats
 // its pair as a single - (not illustrated above).  For now
 // each regexp run produces two match results, one for a
-// ``full match'' that restricts the regexp to matching the entire
-// string or nothing, and one for a ``partial match'' that gives
+// “full match” that restricts the regexp to matching the entire
+// string or nothing, and one for a “partial match” that gives
 // the leftmost first match found in the string.
 //
 // Lines beginning with # are comments. Lines beginning with
@@ -61,7 +62,6 @@ import (
 //
 // At time of writing, re2-exhaustive.txt is 59 MB but compresses to 385 kB,
 // so we store re2-exhaustive.txt.bz2 in the repository and decompress it on the fly.
-//
 func TestRE2Search(t *testing.T) {
 	testRE2(t, "testdata/re2-search.txt")
 }
@@ -675,7 +675,7 @@ const (
 	easy1  = "A[AB]B[BC]C[CD]D[DE]E[EF]F[FG]G[GH]H[HI]I[IJ]J$"
 	medium = "[XYZ]ABCDEFGHIJKLMNOPQRSTUVWXYZ$"
 	hard   = "[ -~]*ABCDEFGHIJKLMNOPQRSTUVWXYZ$"
-        hard1  = "ABCE|CDEG|GHIK|HIJM|IJKN|KLMO|LMNP|PQRT|STUW|WXYA"
+	hard1  = "ABCE|CDEG|GHIK|HIJM|IJKN|KLMO|LMNP|PQRT|STUW|WXYA"
 )
 
 func BenchmarkMatchEasy0_32(b *testing.B)   { benchmark(b, easy0, 32<<0) }
@@ -698,11 +698,11 @@ func BenchmarkMatchHard_1K(b *testing.B)    { benchmark(b, hard, 1<<10) }
 func BenchmarkMatchHard_32K(b *testing.B)   { benchmark(b, hard, 32<<10) }
 func BenchmarkMatchHard_1M(b *testing.B)    { benchmark(b, hard, 1<<20) }
 func BenchmarkMatchHard_32M(b *testing.B)   { benchmark(b, hard, 32<<20) }
-func BenchmarkMatchHard1_32(b *testing.B)    { benchmark(b, hard1, 32<<0) }
-func BenchmarkMatchHard1_1K(b *testing.B)    { benchmark(b, hard1, 1<<10) }
-func BenchmarkMatchHard1_32K(b *testing.B)   { benchmark(b, hard1, 32<<10) }
-func BenchmarkMatchHard1_1M(b *testing.B)    { benchmark(b, hard1, 1<<20) }
-func BenchmarkMatchHard1_32M(b *testing.B)   { benchmark(b, hard1, 32<<20) }
+func BenchmarkMatchHard1_32(b *testing.B)   { benchmark(b, hard1, 32<<0) }
+func BenchmarkMatchHard1_1K(b *testing.B)   { benchmark(b, hard1, 1<<10) }
+func BenchmarkMatchHard1_32K(b *testing.B)  { benchmark(b, hard1, 32<<10) }
+func BenchmarkMatchHard1_1M(b *testing.B)   { benchmark(b, hard1, 1<<20) }
+func BenchmarkMatchHard1_32M(b *testing.B)  { benchmark(b, hard1, 32<<20) }
 
 func TestLongest(t *testing.T) {
 	re, err := Compile(`a(|b)`)

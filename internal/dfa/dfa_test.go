@@ -5,8 +5,8 @@ package dfa
 import (
 	"testing"
 
-	"matloob.io/regexp/internal/input"
-	"matloob.io/regexp/syntax"
+	"github.com/RadhiFadlillah/matloob-regexp/internal/input"
+	"github.com/RadhiFadlillah/matloob-regexp/syntax"
 )
 
 func matchDFA(regexp string, input string) (int, int, bool, error) {

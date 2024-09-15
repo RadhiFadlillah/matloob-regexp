@@ -47,8 +47,8 @@ var (
 // Special "firstbyte" values for a state.  (Values >= 0 denote actual bytes.)
 const (
 	fbUnknown int64 = -1 // No analysis has been performed.
-	fbMany int64   = -2 // Many bytes will lead out of this state.
-	fbNone int64  = -3 // No bytes lead out of this state.
+	fbMany    int64 = -2 // Many bytes will lead out of this state.
+	fbNone    int64 = -3 // No bytes lead out of this state.
 )
 
 const (
@@ -119,12 +119,12 @@ type stateSet struct {
 func (s *stateSet) init(budget int, runeRanges int, proglen int, nmark int) {
 	// estimate State size to avoid using unsafe
 	const intsize = 8
-	const slicesize = 3*intsize
-	const statesize = 2 *slicesize+intsize
+	const slicesize = 3 * intsize
+	const statesize = 2*slicesize + intsize
 
 	// the cost of one state including the inst and next slices
 	onestate := statesize + runeRanges*intsize + (proglen+nmark)*intsize
-	numstates := budget/onestate
+	numstates := budget / onestate
 	// TODO(matloob): actually use budget number
 	s.states = make([]State, 0, numstates)
 

@@ -6,9 +6,10 @@ package regexp
 
 import (
 	"bytes"
-	"matloob.io/regexp/syntax"
 	"sort"
 	"unicode"
+
+	"github.com/RadhiFadlillah/matloob-regexp/syntax"
 )
 
 // "One-pass" regexp execution.
